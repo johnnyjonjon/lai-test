@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ============================================ -->
+    <!-- META TAGS & SEO                             -->
+    <!-- ============================================ -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lorong AI - Singapore's iconic AI hub bringing together government, industry, and research to build AI for the public good. Join 250+ core members and 4,000+ community network.">
+    <meta property="og:title" content="Lorong AI - Where AI Innovation Thrives">
+    <meta property="og:description" content="Join Singapore's premier AI community. Connect with 250+ practitioners from leading organizations.">
+    <meta property="og:type" content="website">
+    <title>Lorong AI - Where AI Innovation Thrives</title>
+
+    <style>
+        /* ============================================ */
+        /* BASE STYLES & RESET                         */
+        /* ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* ============================================ */
+        /* ACCESSIBILITY                               */
+        /* ============================================ */
+        
+        /* Skip link for keyboard navigation */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #1a1a1a;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 10000;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Focus styles for keyboard navigation */
+        *:focus {
+            outline: 2px solid #006633;
+            outline-offset: 2px;
+        }
+
+        /* ============================================ */
+        /* HEADER & NAVIGATION                         */
+        /* ============================================ */
+        
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            border-bottom: 2px solid #FFD100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        /* Scrolled state - smaller header */
+        header.scrolled {
+            padding: 0.75rem 5%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Logo styling */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #1a1a1a;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Arrow icon before logo */
+        .logo::before {
+            content: '→';
+            color: #FFD100;
+            font-size: 1.8rem;
+        }
+
+        /* Desktop navigation links */
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #333333;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        /* Animated underline on hover */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FFD100;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #006633;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a:focus::after {
+            width: 100%;
+        }
+
+        /* Active section indicator */
+        .nav-links a.active {
+            color: #006633;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Primary CTA button in header */
+        .cta-button {
+            background: #006633;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 2px solid #006633;
+            display: inline-block;
+        }
+
+        .cta-button:hover,
+        .cta-button:focus {
+            background: #FFD100;
+            color: #1a1a1a;
+            border-color: #FFD100;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 209, 0, 0.3);
+        }
+
+        /* ============================================ */
+        /* MOBILE MENU                                 */
+        /* ============================================ */
+        
+        /* Hamburger icon (hidden on desktop) */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #1a1a1a;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        /* Hamburger animation when active */
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* ============================================ */
+        /* HERO SECTION                                */
+        /* ============================================ */
+        
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 5% 4rem;
+            color: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Grid pattern background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255, 209, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 209, 0, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 1100px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Subtitle badge above main heading */
+        .hero-subtitle {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #006633;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 209, 0, 0.15);
+            border: 2px solid #FFD100;
+            border-radius: 4px;
+        }
+
+        /* Main hero heading */
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+        }
+
+        /* Highlighted text in heading (green) */
+        .hero h1 .highlight {
+            color: #006633;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Hero description paragraph */
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: #4a4a4a;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        /* Decorative divider (yellow line with green ends) */
+        .street-sign-divider {
+            width: 80px;
+            height: 4px;
+            background: #FFD100;
+            margin: 1.5rem auto;
+            position: relative;
+        }
+
+        .street-sign-divider::before,
+        .street-sign-divider::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 4px;
+            background: #006633;
+        }
+
+        .street-sign-divider::before {
+            left: -25px;
+        }
+
+        .street-sign-divider::after {
+            right: -25px;
+        }
+
+        /* Hero CTA buttons container */
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        /* Primary button style (green) */
+        .btn-primary {
+            background: #006633;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 2px solid #006633;
+            display: inline-block;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: #004d26;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 102, 51, 0.3);
+        }
+
+        /* Secondary button style (outline) */
+        .btn-secondary {
+            background: transparent;
+            color: #1a1a1a;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 2px solid #1a1a1a;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background: #1a1a1a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ============================================ */
+        /* STATISTICS SECTION                          */
+        /* ============================================ */
+        
+        /* "Lorong AI in numbers" title */
+        .stats-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666666;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Stats container */
+        .stats-bar {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1rem;
+            border: 2px solid #f0f0f0;
+        }
+
+        /* Individual stat item */
+        .stat-item {
+            text-align: center;
+        }
+
+        /* Large stat number (250+, 4,000+, etc.) */
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #006633;
+            display: block;
+            line-height: 1;
+        }
+
+        /* Stat label (Core Members, Community Network, etc.) */
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+
+        /* Explanation note below stats */
+        .stats-note {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666666;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        /* ============================================ */
+        /* PARTNER LOGOS SECTION                       */
+        /* ============================================ */
+        
+        .partners {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 2px solid #f0f0f0;
+        }
+
+        .partners-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666666;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Grid layout for partner logos */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            justify-items: center;
+        }
+
+        /* Partner logo images */
+        .partner-logo-img {
+            height: 35px;
+            width: auto;
+            max-width: 100px;
+            object-fit: contain;
+            opacity: 0.6;
+            transition: all 0.3s;
+        }
+
+        .partner-logo-img:hover,
+        .partner-logo-img:focus {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* ============================================ */
+        /* FEATURES SECTION                            */
+        /* (Events, Community, Co-working)             */
+        /* ============================================ */
+        
+        .features {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        /* Section header (title + description) */
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            line-height: 1.8;
+        }
+
+        /* Individual feature card */
+        .feature-card {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 3rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+
+        /* Hover effect on feature cards */
+        .feature-card:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            border-color: #FFD100;
+            transform: translateY(-5px);
+        }
+
+        /* Alternate layout for even cards (image on right) */
+        .feature-card:nth-child(even) {
+            direction: rtl;
+        }
+
+        .feature-card:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        /* Feature image container */
+        .feature-image {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        /* Image zoom on card hover */
+        .feature-card:hover .feature-image img {
+            transform: scale(1.05);
+        }
+
+        /* Arrow icon overlay on images */
+        .arrow-icon {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 50px;
+            height: 50px;
+            background: #FFD100;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a1a1a;
+            transition: all 0.3s;
+        }
+
+        /* Arrow icon animation on hover */
+        .feature-card:hover .arrow-icon {
+            background: #006633;
+            color: white;
+            transform: rotate(45deg);
+        }
+
+        /* Feature content (text side) */
+        .feature-content h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Colored underline for feature titles */
+        .feature-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #FFD100 0%, #006633 100%);
+        }
+
+        .feature-content p {
+            color: #4a4a4a;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-top: 1.5rem;
+        }
+
+        /* ============================================ */
+        /* TESTIMONIALS SECTION                        */
+        /* ============================================ */
+        
+        .testimonials {
+            padding: 6rem 5%;
+            background: #f8f9fa;
+        }
+
+        /* Testimonial card */
+        .testimonial-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #FFD100;
+        }
+
+        /* Quote text */
+        .testimonial-text {
+            font-size: 1.2rem;
+            color: #2d2d2d;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Author info container */
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Avatar circle with initials */
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #FFD100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        .testimonial-info h4 {
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-info p {
+            color: #666666;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================ */
+        /* CTA (CALL-TO-ACTION) SECTION                */
+        /* ============================================ */
+        
+        .cta-section {
+            padding: 6rem 5%;
+            background: rgba(255, 209, 0, 0.1);
+            text-align: center;
+            color: #1a1a1a;
+            border-top: 2px solid #FFD100;
+            border-bottom: 2px solid #FFD100;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Grid of CTA cards */
+        .cta-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+
+        /* Individual CTA card */
+        .cta-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            text-align: left;
+        }
+
+        .cta-card:hover,
+        .cta-card:focus-within {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            border-color: #006633;
+        }
+
+        /* Icon at top of CTA card */
+        .cta-card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #FFD100 0%, #FFA500 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-card h3 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #1a1a1a;
+        }
+
+        .cta-card p {
+            color: #4a4a4a;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* CTA card button */
+        .cta-card-button {
+            display: inline-block;
+            background: #006633;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 2px solid #006633;
+        }
+
+        .cta-card-button:hover,
+        .cta-card-button:focus {
+            background: #FFD100;
+            color: #1a1a1a;
+            border-color: #FFD100;
+            transform: scale(1.05);
+        }
+
+        /* ============================================ */
+        /* NEWSLETTER SECTION                          */
+        /* ============================================ */
+        
+        .newsletter {
+            max-width: 600px;
+            margin: 4rem auto 0;
+            padding: 3rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .newsletter h3 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+        }
+
+        .newsletter p {
+            color: #4a4a4a;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Form group for proper labeling */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333333;
+            font-size: 0.9rem;
+        }
+
+        /* Newsletter form layout */
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Email input field */
+        .newsletter-form input {
+            flex: 1;
+            padding: 1.2rem 1.5rem;
+            border: 2px solid #e9ecef;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            min-width: 0;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: #FFD100;
+        }
+
+        .newsletter-form input:invalid {
+            border-color: #dc3545;
+        }
+
+        /* Submit button */
+        .newsletter-form button {
+            padding: 1.2rem 2.5rem;
+            background: #006633;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover:not(:disabled),
+        .newsletter-form button:focus:not(:disabled) {
+            background: #004d26;
+            transform: scale(1.05);
+        }
+
+        .newsletter-form button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Loading spinner (hidden by default) */
+        .newsletter-form button .loading-spinner {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .newsletter-form button.loading .button-text {
+            visibility: hidden;
+        }
+
+        .newsletter-form button.loading .loading-spinner {
+            display: block;
+        }
+
+        /* Success/error message display */
+        .form-message {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .form-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .form-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        /* Privacy policy notice */
+        .privacy-notice {
+            font-size: 0.85rem;
+            color: #666666;
+            margin-top: 1rem;
+        }
+
+        .privacy-notice a {
+            color: #006633;
+            text-decoration: underline;
+        }
+
+        .privacy-notice a:hover,
+        .privacy-notice a:focus {
+            color: #004d26;
+        }
+
+        /* ============================================ */
+        /* FOOTER                                      */
+        /* ============================================ */
+        
+        footer {
+            background: #1a1a1a;
+            color: #e5e5e5;
+            padding: 4rem 5% 2rem;
+            border-top: 4px solid #FFD100;
+        }
+
+        /* Footer content grid */
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: #FFD100;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #b3b3b3;
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover,
+        .footer-section a:focus {
+            color: #FFD100;
+        }
+
+        /* Social media links */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #2d2d2d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover,
+        .social-links a:focus {
+            background: #FFD100;
+            color: #1a1a1a;
+            transform: translateY(-3px);
+        }
+
+        /* Footer bottom (copyright) */
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333333;
+            color: #808080;
+        }
+
+        /* ============================================ */
+        /* LOADING ANIMATION                           */
+        /* ============================================ */
+        
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE DESIGN - TABLET                  */
+        /* ============================================ */
+        
+        @media (max-width: 968px) {
+            /* Hide desktop nav, show mobile menu */
+            .nav-links,
+            .cta-button {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            /* Mobile menu overlay */
+            .nav-links.mobile-active {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                padding: 2rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                gap: 1rem;
+                border-bottom: 2px solid #FFD100;
+            }
+
+            /* Adjust hero for tablets */
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            /* Stack feature cards on tablets */
+            .feature-card {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+            }
+
+            .feature-card:nth-child(even) {
+                direction: ltr;
+            }
+
+            .feature-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            /* Stack newsletter form on tablets */
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .stats-bar {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .logo-grid {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .partner-logo-img {
+                height: 30px;
+                max-width: 80px;
+            }
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE DESIGN - MOBILE                  */
+        /* ============================================ */
+        
+        @media (max-width: 480px) {
+            /* Further reduce sizes for mobile */
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .feature-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .logo-grid {
+                gap: 1rem;
+            }
+
+            .partner-logo-img {
+                height: 25px;
+                max-width: 70px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================ -->
+    <!-- ACCESSIBILITY SKIP LINK                     -->
+    <!-- ============================================ -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ============================================ -->
+    <!-- HEADER & NAVIGATION                         -->
+    <!-- ============================================ -->
+    <header>
+        <nav>
+            <a href="#" class="logo" aria-label="Lorong AI Home">Lorong AI</a>
+            
+            <!-- Desktop Navigation -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#events">Events</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#coworking">Co-working</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            
+            <!-- Header CTA Button -->
+            <a href="#join" class="cta-button" aria-label="Join Lorong AI">Join Us</a>
+            
+            <!-- Mobile Menu Toggle (Hamburger) -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- MAIN CONTENT                                -->
+    <!-- ============================================ -->
+    <main id="main-content">
+        
+        <!-- ============================================ -->
+        <!-- HERO SECTION                                -->
+        <!-- ============================================ -->
+        <section class="hero">
+            <div class="hero-content">
+                <!-- Subtitle Badge -->
+                <p class="hero-subtitle">Singapore's Iconic AI Site</p>
+                
+                <!-- Main Heading -->
+                <h1>AI for the <span class="highlight">Public Good</span><br>For Singapore and the World.</h1>
+                
+                <!-- Decorative Divider -->
+                <div class="street-sign-divider" role="presentation"></div>
+                
+                <!-- Description -->
+                <p class="hero-description">Lorong AI brings together government, industry, and research to build Singapore's AI ecosystem. A collaborative hub where AI practitioners connect, innovate, and shape the future of responsible AI.</p>
+                
+                <!-- CTA Buttons -->
+                <div class="hero-cta-group">
+                    <a href="#join" class="btn-primary">Become a Member</a>
+                    <a href="#events" class="btn-secondary">View Events</a>
+                </div>
+
+                <!-- Statistics -->
+                <p class="stats-title">Lorong AI in numbers</p>
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-number">250+</span>
+                        <span class="stat-label">Core Members</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4,000+</span>
+                        <span class="stat-label">Community Network</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Events Annually</span>
+                    </div>
+                </div>
+                
+                <!-- Stats Explanation -->
+                <p class="stats-note">Core Members have full workspace access and exclusive benefits. Our Community Network includes event participants, newsletter subscribers, and ecosystem partners.</p>
+                
+                <!-- Partner Logos -->
+                <div class="partners">
+                    <p class="partners-label">Organizations our members are associated with</p>
+                    <div class="logo-grid">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_DeepMind_logo.png" alt="Google DeepMind" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/MIT_logo.svg" alt="MIT" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Stanford_University_seal_2003.svg" alt="Stanford University" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Oxford_University_Coat_Of_Arms.svg" alt="Oxford University" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/NUS_coat_of_arms.svg" alt="National University of Singapore" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg" alt="Sony" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Intel_logo_%282006-2020%29.svg" alt="Intel" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" alt="Oracle" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/AMD_Logo.svg" alt="AMD" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/8/8e/Imperial_College_London_crest.svg" alt="Imperial College London" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/University_College_London_logo.svg" alt="University College London" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/University_of_Chicago_Coat_of_arms.svg" alt="University of Chicago" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Cohere_company_logo.svg" alt="Cohere" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/University_of_Pennsylvania_coat_of_arms.svg" alt="University of Pennsylvania" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/TOSHIBA_Logo.svg" alt="Toshiba" class="partner-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Panasonic_logo_%28Blue%29.svg" alt="Panasonic" class="partner-logo-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- FEATURES SECTION                            -->
+        <!-- ============================================ -->
+        <section class="features">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h2 class="section-title">What We Offer</h2>
+            </div>
+
+            <!-- Feature 1: Events -->
+            <article class="feature-card" id="events">
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop" alt="AI practitioners collaborating at an event" loading="lazy">
+                    <div class="arrow-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="feature-content">
+                    <h2>Events</h2>
+                    <p>Technical deep-dives, hands-on workshops, and knowledge exchanges bringing together AI practitioners, researchers, and industry leaders. From cutting-edge research discussions to practical applications, our curated programming drives innovation and builds expertise across Singapore's AI ecosystem.</p>
+                </div>
+            </article>
+
+            <!-- Feature 2: Community -->
+            <article class="feature-card" id="community">
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&h=500&fit=crop" alt="Diverse AI community members networking" loading="lazy">
+                    <div class="arrow-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="feature-content">
+                    <h2>Community</h2>
+                    <p>The intellectual home for Singapore's AI ecosystem. We bring together practitioners from government, industry, and research to form the tight-knit knowledge community critical for innovation. Connect with 250+ core members and 4,000+ practitioners, share insights, and collaborate on solutions that advance AI for the public good.</p>
+                </div>
+            </article>
+
+            <!-- Feature 3: Co-working -->
+            <article class="feature-card" id="coworking">
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop" alt="Modern co-working space for AI professionals" loading="lazy">
+                    <div class="arrow-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="feature-content">
+                    <h2>Co-working</h2>
+                    <p>A dedicated space designed to foster collaboration and innovation. Co-locate with AI practitioners across government agencies, industry leaders, and research institutions. Access world-class infrastructure and be part of the community building Singapore's position as a global AI leader.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- TESTIMONIALS SECTION                        -->
+        <!-- ============================================ -->
+        <section class="testimonials">
+            <div class="section-header">
+                <h2 class="section-title">What Members Say</h2>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Lorong AI has been instrumental in connecting me with Singapore's leading AI practitioners. The quality of events and the caliber of members make it an invaluable resource for anyone serious about advancing AI for the public good."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar" aria-hidden="true">DR</div>
+                    <div class="testimonial-info">
+                        <h4>Dr. Rachel Tan</h4>
+                        <p>AI Research Lead, Government Technology Agency</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- CTA (CALL TO ACTION) SECTION                -->
+        <!-- ============================================ -->
+        <section class="cta-section" id="join">
+            <h2>Join Singapore's AI Ecosystem</h2>
+            
+            <!-- CTA Cards -->
+            <div class="cta-options">
+                <!-- Card 1: Events -->
+                <div class="cta-card">
+                    <div class="cta-card-icon" aria-hidden="true">📅</div>
+                    <h3>Attend Events</h3>
+                    <p>Join workshops, technical deep-dives, and networking sessions with leading AI practitioners and researchers.</p>
+                    <a href="#" class="cta-card-button">View Events</a>
+                </div>
+                
+                <!-- Card 2: Membership -->
+                <div class="cta-card">
+                    <div class="cta-card-icon" aria-hidden="true">🤝</div>
+                    <h3>Become a Member</h3>
+                    <p>Co-locate with government, industry, and research. Access dedicated workspace and join Singapore's iconic AI site.</p>
+                    <a href="#" class="cta-card-button">Apply Now</a>
+                </div>
+                
+                <!-- Card 3: Partnership -->
+                <div class="cta-card">
+                    <div class="cta-card-icon" aria-hidden="true">🚀</div>
+                    <h3>Partner With Us</h3>
+                    <p>Collaborate with Lorong AI to build Singapore's AI ecosystem and support responsible AI development.</p>
+                    <a href="#" class="cta-card-button">Get in Touch</a>
+                </div>
+            </div>
+
+            <!-- Newsletter Signup -->
+            <div class="newsletter">
+                <h3>Stay Connected</h3>
+                <p>Get the latest updates on events, workshops, and insights from Singapore's AI community.</p>
+                
+                <!-- Newsletter Form -->
+                <form class="newsletter-form" id="newsletterForm" novalidate>
+                    <div style="flex: 1;">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="you@example.com" 
+                            required
+                            aria-required="true"
+                            aria-describedby="email-error">
+                    </div>
+                    <button type="submit" aria-label="Subscribe to newsletter">
+                        <span class="button-text">Subscribe</span>
+                        <span class="loading-spinner" aria-hidden="true"></span>
+                    </button>
+                </form>
+                
+                <!-- Form Messages (Success/Error) -->
+                <div class="form-message" id="formMessage" role="alert"></div>
+                
+                <!-- Privacy Notice -->
+                <p class="privacy-notice">By subscribing, you agree to our <a href="#privacy">Privacy Policy</a>.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================ -->
+    <!-- FOOTER                                      -->
+    <!-- ============================================ -->
+    <footer id="about">
+        <div class="footer-content">
+            <!-- Footer Column 1: About -->
+            <div class="footer-section">
+                <h4>Lorong AI</h4>
+                <p>Singapore's iconic AI site. Building AI for the public good, for Singapore and the world.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="Twitter">𝕏</a>
+                    <a href="#" aria-label="GitHub">⚡</a>
+                </div>
+            </div>
+            
+            <!-- Footer Column 2: Quick Links -->
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#events">Events</a>
+                <a href="#community">Community</a>
+                <a href="#coworking">Co-working</a>
+                <a href="#join">Membership</a>
+            </div>
+            
+            <!-- Footer Column 3: Contact -->
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>123 AI Street<br>Singapore 123456</p>
+                <p>Email: hello@lorong.ai</p>
+                <p>Phone: +65 1234 5678</p>
+            </div>
+            
+            <!-- Footer Column 4: Legal -->
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#code">Code of Conduct</a>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 Lorong AI. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; color: #999999;">AI for the Public Good, for Singapore and the World</p>
+        </div>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT                                  -->
+    <!-- ============================================ -->
+    <script>
+        /* ============================================ */
+        /* MOBILE MENU FUNCTIONALITY                   */
+        /* ============================================ */
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        // Toggle mobile menu on click
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            navLinks.classList.toggle('mobile-active');
+            
+            // Update ARIA expanded state
+            const expanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuToggle.setAttribute('aria-expanded', !expanded);
+        });
+
+        // Close mobile menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('mobile-active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        /* ============================================ */
+        /* SMOOTH SCROLLING FOR ANCHOR LINKS           */
+        /* ============================================ */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                
+                if (target) {
+                    // Offset for fixed header
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        /* ============================================ */
+        /* ACTIVE NAVIGATION HIGHLIGHTING              */
+        /* ============================================ */
+        const sections = document.querySelectorAll('section[id]');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            // Find which section is currently in view
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            // Update active class on nav items
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        /* ============================================ */
+        /* HEADER SCROLL EFFECT                        */
+        /* ============================================ */
+        const header = document.querySelector('header');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            // Add 'scrolled' class when scrolled down
+            if (currentScroll > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        /* ============================================ */
+        /* NEWSLETTER FORM HANDLING                    */
+        /* ============================================ */
+        const newsletterForm = document.getElementById('newsletterForm');
+        const formMessage = document.getElementById('formMessage');
+        
+        newsletterForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitButton = newsletterForm.querySelector('button[type="submit"]');
+            const emailInput = newsletterForm.querySelector('#email');
+            
+            // Validate email
+            if (!emailInput.validity.valid) {
+                showMessage('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Show loading state
+            submitButton.disabled = true;
+            submitButton.classList.add('loading');
+            formMessage.className = 'form-message';
+            formMessage.textContent = '';
+            
+            // Simulate API call (replace with your actual API endpoint)
+            try {
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Success
+                showMessage('Thank you for subscribing! Check your email for confirmation.', 'success');
+                newsletterForm.reset();
+            } catch (error) {
+                // Error
+                showMessage('Something went wrong. Please try again later.', 'error');
+            } finally {
+                // Reset button state
+                submitButton.disabled = false;
+                submitButton.classList.remove('loading');
+            }
+        });
+        
+        // Helper function to show messages
+        function showMessage(text, type) {
+            formMessage.textContent = text;
+            formMessage.className = `form-message ${type}`;
+        }
+
+        /* ============================================ */
+        /* LAZY LOAD IMAGES                            */
+        /* (Uses Intersection Observer API)            */
+        /* ============================================ */
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            // Observe all images with loading="lazy"
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+</body>
+</html>
